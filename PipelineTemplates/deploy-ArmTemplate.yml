@@ -1,0 +1,22 @@
+
+parameters:
+  servicePrin: #'AzureUsGov'
+  deployRg: #'obodeploy'
+  location: #'USGov Virginia'
+  csmFile: #'Server.json'
+  csmParamFile: #'Server_mag_srp_db_staging.parameters.json'
+  deploymentName: #'SRVDBServerDeploy'
+
+steps:
+
+- task: AzureResourceGroupDeployment@2
+  displayName: 'ARM Template Deployment'
+  inputs:
+    azureSubscription: ${{ parameters.servicePrin }}
+    resourceGroupName: ${{ parameters.deployRg }}
+    location: ${{ parameters.location }}
+    templateLocation: 'Linked artifact'
+    csmFile: $(System.ArtifactsDirectory)/ArmTemplates/${{ parameters.csmFile }}
+    csmParametersFile: $(System.ArtifactsDirectory)/ArmTemplates/${{ parameters.csmParamFile }}
+    deploymentMode: 'Incremental'
+    deploymentName: ${{ parameters.deploymentName }}

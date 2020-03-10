@@ -1,0 +1,53 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "localAdminUsername": {
+            "value": "string"
+        },
+        "localAdminPassword": {
+            "reference": {
+              "keyVault": {
+                "id": "/subscriptions/fa2254d9-bc0b-4c81-b918-b71bf0627954/resourceGroups/az203/providers/Microsoft.KeyVault/vaults/az203testvault"
+              },
+              "secretName": "VmAdminPw"
+            }
+        },
+        "vmName": {
+            "value": "TestVM"
+        },
+        "vmSize": {
+            "value": "Standard_F2s"
+        },
+        "virtualNetworkRG": {
+            "value": "RooRG"
+        },
+        "virtualNetworkName": {
+            "value": "RooRG-Vnet"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "logAnalyticsRG": {
+            "value": "mms-eus"
+        },
+        "workspaceName": {
+            "value": "roodata"
+        },
+        "imagePublisher": {
+            "value": "MicrosoftWindowsServer"
+        },
+        "imageOffer": {
+            "value": "WindowsServer"
+        },
+        "imageSKU": {
+            "value": "2016-Datacenter"
+        },
+        "imageVersion": {
+            "value": "latest"
+        },
+        "DDriveSize": {
+            "value": 32
+        }
+    }
+}

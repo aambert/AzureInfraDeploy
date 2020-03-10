@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "localAdminUsername": {
+            "value": "oboadmin"
+        },
+        "localAdminPassword": {
+            "reference": {
+              "keyVault": {
+                "id": "/subscriptions/101c7fd3-e503-44bd-bbe5-06a28e620981/resourceGroups/RecoveryRG/providers/Microsoft.KeyVault/vaults/RooKeyvault"
+              },
+              "secretName": "VmAdminPw"
+            }
+        },
+        "vmName": {
+            "value": "SRPDBSrv"
+        },
+        "vmSize": {
+            "value": "Standard_B4ms"
+        },
+        "availabilitySetName": {
+            "value": "SRPDbAvSet"
+        },
+        "virtualNetworkRG": {
+            "value": "RooRG"
+        },
+        "virtualNetworkName": {
+            "value": "RooRG-Vnet"
+        },
+        "subnetName": {
+            "value": "default"
+        },
+        "logAnalyticsRG": {
+            "value": "testrg"
+        },
+        "workspaceName": {
+            "value": "testme"
+        },
+        "imagePublisher": {
+            "value": "MicrosoftWindowsServer"
+        },
+        "imageOffer": {
+            "value": "WindowsServer"
+        },
+        "imageSKU": {
+            "value": "2016-Datacenter"
+        },
+        "imageVersion": {
+            "value": "latest"
+        },
+        "dataDiskList": {
+            "value": [
+                {"name": "Log", "diskSizeGB": "40", "lun": "0", "sku": "StandardSSD_LRS"},
+                {"name": "Data", "diskSizeGB": "60", "lun": "1", "sku": "StandardSSD_LRS"},
+                {"name": "Data1", "diskSizeGB": "60", "lun": "2", "sku": "Standard_LRS"},
+                {"name": "Root_System", "diskSizeGB": "10", "lun": "3", "sku": "Standard_LRS"},
+                {"name": "TempDB", "diskSizeGB": "40", "lun": "4", "sku": "Standard_LRS"},
+                {"name": "Backups", "diskSizeGB": "100", "lun": "5", "sku": "Standard_LRS"}
+            ]
+        }
+    }
+}
