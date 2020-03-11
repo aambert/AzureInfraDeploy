@@ -60,8 +60,7 @@ stages:
       inputs:
         ARMTemplateFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.json'
         ARMTemplateParameterFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.srpDb.parameters.json'
-        #enabled: true
-
+        
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: ArmTemplates'
       inputs:
