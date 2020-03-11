@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "domainAdminUsername": {
+            "value": "dadmin"
+        },
+        "domainAdminPassword": {
+            "reference": {
+                "keyVault": {
+                  "id": "/subscriptions/101c7fd3-e503-44bd-bbe5-06a28e620981/resourceGroups/RecoveryRG/providers/Microsoft.KeyVault/vaults/RooKeyvault"
+                },
+                "secretName": "DomainAdminPw"
+              }
+        },
+        "domainName": {
+            "value": "roo.local"
+        },
+        "domainJoinOptions": {
+            "value": 3
+        },
+        "ouPath": {
+            "value": ""
+        },
+        "vmName": {
+            "value": "srv1"
+        }
+    }
+}

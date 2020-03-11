@@ -1,25 +1,43 @@
 
+# parameters:
+#   servicePrin: #'AzureUsGov'
+#   deployRg: #'obodeploy'
+#   templateFile: #'Server.json'
+#   templateParamFile: #'Server_mag_srp_db_staging.parameters.json'
+
+# steps:
+
+# - task: AzurePowerShell@4
+#   displayName: 'Azure PowerShell script: Validate ARM Templates'
+#   inputs:
+#     azureSubscription: ${{ parameters.servicePrin }}
+#     scriptType: inlineScript
+#     inline: |
+#       # Test Server ARM template
+#       Test-AzResourceGroupDeployment `
+#       -ResourceGroupName ${{ parameters.deployRg }} `
+#       -Mode 'Incremental' `
+#       -TemplateParameterFile $(System.DefaultWorkingDirectory)\Templates\Server\${{ parameters.templateParamFile }} `
+#       -TemplateFile $(System.DefaultWorkingDirectory)\Templates\Server\${{ parameters.templateFile }} `
+#       -ErrorAction Stop
+
 parameters:
   servicePrin: #'AzureUsGov'
   deployRg: #'obodeploy'
-  templateFile: #'Server.json'
-  templateParamFile: #'Server_mag_srp_db_staging.parameters.json'
+  location: #'USGov Virginia'
+  csmFile: #'Server.json'
+  csmParamFile: #'Server_mag_srp_db_staging.parameters.json'
+  deploymentName: #'SRVDBServerDeploy'
 
 steps:
 
-- task: AzurePowerShell@4
-  displayName: 'Azure PowerShell script: Validate ARM Templates'
+- task: AzureResourceGroupDeployment@2
+  displayName: 'ARM Template Deployment'
   inputs:
     azureSubscription: ${{ parameters.servicePrin }}
-    scriptType: inlineScript
-    inline: |
-      # Test Server ARM template
-      Test-AzResourceGroupDeployment `
-      -ResourceGroupName ${{ parameters.deployRg }} `
-      -Mode 'Incremental' `
-      -TemplateParameterFile $(System.DefaultWorkingDirectory)\Templates\Server\${{ parameters.templateParamFile }} `
-      -TemplateFile $(System.DefaultWorkingDirectory)\Templates\Server\${{ parameters.templateFile }} `
-      -ErrorAction Stop
-    errorActionPreference: stop
-    failOnStandardError: true
-    azurePowerShellVersion: latestVersion
+    resourceGroupName: ${{ parameters.deployRg }}
+    location: ${{ parameters.location }}
+    templateLocation: 'Linked artifact'
+    csmFile: $(Build.SourcesDirectory)/Templates/Server/${{ parameters.csmFile }}
+    csmParametersFile: $(Build.SourcesDirectory)/Templates/Server/${{ parameters.csmParamFile }}
+    deploymentMode: 'Validation'

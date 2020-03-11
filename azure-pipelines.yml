@@ -22,40 +22,45 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
+  
+    - template: PipelineTemplates/validate-ArmTemplate.yml
+      parameters:
+        servicePrin: $(servicePrin)
+        deployRg: $(deployRg)
+        location: $(location)
+        csmFile: 'Server.json'
+        csmParamFile: 'Server_mag_srp_db_staging.parameters.json'
+
+    - template: PipelineTemplates/validate-ArmTemplate.yml
+      parameters:
+        servicePrin: $(servicePrin)
+        deployRg: $(deployRg)
+        location: $(location)
+        csmFile: 'Server.json'
+        csmParamFile: 'Server_mag_srp_web_staging.parameters.json'
+  
+    - template: PipelineTemplates/validate-ArmTemplate.yml
+      parameters:
+        servicePrin: $(servicePrin)
+        deployRg: $(deployRg)
+        location: $(location)
+        csmFile: 'DomainJoin.json'
+        csmParamFile: 'DomainJoin.srpDb.parameters.json'
+  
+    - template: PipelineTemplates/validate-ArmTemplate.yml
+      parameters:
+        servicePrin: $(servicePrin)
+        deployRg: $(deployRg)
+        location: $(location)
+        csmFile: 'DomainJoin.json'
+        csmParamFile: 'DomainJoin.srpWeb.parameters.json'
 
     - task: AzSKARMTemplateChecker@4
       displayName: 'AzSK_ARMTemplateChecker '
       inputs:
-        ARMTemplateFilePath: 'Templates/Server/DomainJoin.json'
-        ARMTemplateParameterFilePath: 'Templates/Server/DomainJoin.srpDb.parameters.json'
-        
-    - template: PipelineTemplates/validate-ArmTemplate.yml
-      parameters:
-        servicePrin: $(servicePrin)
-        deployRg: $(deployRg)
-        templateFile: 'Server.json'
-        templateParamFile: 'Server_mag_srp_db_staging.parameters.json'
-
-    - template: PipelineTemplates/validate-ArmTemplate.yml
-      parameters:
-        servicePrin: $(servicePrin)
-        deployRg: $(deployRg)
-        templateFile: 'Server.json'
-        templateParamFile: 'Server_mag_srp_web_staging.parameters.json'
-
-    - template: PipelineTemplates/validate-ArmTemplate.yml
-      parameters:
-        servicePrin: $(servicePrin)
-        deployRg: $(deployRg)
-        templateFile: 'DomainJoin.json'
-        templateParamFile: 'DomainJoin.srpDb.parameters.json'
-
-    - template: PipelineTemplates/validate-ArmTemplate.yml
-      parameters:
-        servicePrin: $(servicePrin)
-        deployRg: $(deployRg)
-        templateFile: 'DomainJoin.json'
-        templateParamFile: 'DomainJoin.srpWeb.parameters.json'
+        ARMTemplateFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.json'
+        ARMTemplateParameterFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.srpDb.parameters.json'
+        #enabled: true
 
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: ArmTemplates'
