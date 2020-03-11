@@ -166,7 +166,7 @@ stages:
 
     - template: PipelineTemplates/deploy-dsc.yml
       parameters:
-        servicePrin: 'AzureUsGov'
+        servicePrin: $(servicePrin)
         rgName: $(deployRg)
         vmName: 'SRPDBSrv'
         archBlob: 'FormatDrives_srp_db_config.ps1.zip'
@@ -177,7 +177,7 @@ stages:
 
     - template: PipelineTemplates/deploy-dsc.yml
       parameters:
-        servicePrin: 'AzureUsGov'
+        servicePrin: $(servicePrin)
         rgName: $(deployRg)
         vmName: 'SRPWebSrv'
         archBlob: 'FormatDrives_srp_web_config.ps1.zip'
