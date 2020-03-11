@@ -8,7 +8,7 @@ variables:
   storageAcctRg: 'rooRG'
   storageAcct: 'roosa'
   container: 'dsc'
-  servicePrin: 'AzureUsGov'
+  servicePrin: 'AzureGov'
   location: 'USGov Virginia'
   archSaName: 'roosa'
   archSaRG: 'roorg'
@@ -56,7 +56,7 @@ stages:
         csmParamFile: 'DomainJoin.srpWeb.parameters.json'
 
     - task: AzSKARMTemplateChecker@4
-      displayName: 'AzSK_ARMTemplateChecker '
+      displayName: 'AzSK_ARMTemplateChecker'
       inputs:
         ARMTemplateFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.json'
         ARMTemplateParameterFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.srpDb.parameters.json'
