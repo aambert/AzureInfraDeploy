@@ -55,11 +55,11 @@ stages:
         csmFile: 'DomainJoin.json'
         csmParamFile: 'DomainJoin.srpWeb.parameters.json'
 
-    - task: AzSKARMTemplateChecker@4
-      displayName: 'AzSK_ARMTemplateChecker'
-      inputs:
-        ARMTemplateFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.json'
-        ARMTemplateParameterFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.srpDb.parameters.json'
+    # - task: AzSKARMTemplateChecker@4
+    #   displayName: 'AzSK_ARMTemplateChecker'
+    #   inputs:
+    #     ARMTemplateFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.json'
+    #     ARMTemplateParameterFilePath: '$(Build.SourcesDirectory)/Templates/Server/DomainJoin.srpDb.parameters.json'
         
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: ArmTemplates'
@@ -250,10 +250,10 @@ stages:
         failOnStandardError: true
         azurePowerShellVersion: latestVersion
 
-    # - task: AzurePowerShell@4
-    #   displayName: 'PowerShell: Set Private IP to Static'
-    #   inputs:
-    #     azureSubscription: $(servicePrin)
-    #     scriptPath: '$(System.ArtifactsDirectory)/Scripts/SetStaticPrivateIP.ps1'
-    #     scriptArguments: -RG $(deployRg)
-    #     azurePowerShellVersion: LatestVersion
+    - task: AzurePowerShell@4
+      displayName: 'PowerShell: Set Private IP to Static'
+      inputs:
+        azureSubscription: $(servicePrin)
+        scriptPath: '$(System.ArtifactsDirectory)/Scripts/SetStaticPrivateIP.ps1'
+        scriptArguments: -RG $(deployRg)
+        azurePowerShellVersion: LatestVersion
