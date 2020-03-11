@@ -4,8 +4,8 @@ trigger:
 
 variables:
   deployMode: 'Incremental'
-  deployRg: 'OBO_TestDeploy_RG'
-  storageAcctRg: '<>'
+  deployRg: 'obodeploy'
+  storageAcctRg: 'rooRG'
   storageAcct: 'roosa'
   container: 'dsc'
   servicePrin: 'AzureUsGov'
