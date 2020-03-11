@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "localAdminUsername": {
-            "value": "oboadmin"
+            "value": "ladmin"
         },
         "localAdminPassword": {
             "reference": {
@@ -14,13 +14,10 @@
             }
         },
         "vmName": {
-            "value": "SRPWebSrv"
+            "value": "MRDWebSrv"
         },
         "vmSize": {
             "value": "Standard_B2ms"
-        },
-        "availabilitySetName": {
-            "value": "SRPWebAvSet"
         },
         "virtualNetworkRG": {
             "value": "RooRG"
@@ -51,8 +48,8 @@
         },
         "dataDiskList": {
             "value": [
-                {"name": "dataDisk1", "diskSizeGB": "40", "lun": "0", "sku": "Standard_LRS"},
-                {"name": "dataDisk2", "diskSizeGB": "50", "lun": "1", "sku": "Standard_LRS"}
+                {"name": "Binaries", "diskSizeGB": "40", "lun": "0", "sku": "Standard_LRS"},
+                {"name": "Data", "diskSizeGB": "50", "lun": "1", "sku": "Standard_LRS"}
             ]
         }
     }

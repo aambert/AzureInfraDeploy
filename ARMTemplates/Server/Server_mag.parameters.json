@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "localAdminUsername": {
-            "value": "oboadmin"
+            "value": "ladmin"
         },
         "localAdminPassword": {
             "reference": {
@@ -14,13 +14,10 @@
             }
         },
         "vmName": {
-            "value": "SRPDBSrv"
+            "value": "OBOSrv"
         },
         "vmSize": {
-            "value": "Standard_B4ms"
-        },
-        "availabilitySetName": {
-            "value": "SRPDbAvSet"
+            "value": "Standard_F2s"
         },
         "virtualNetworkRG": {
             "value": "RooRG"
@@ -51,12 +48,10 @@
         },
         "dataDiskList": {
             "value": [
-                {"name": "Log", "diskSizeGB": "40", "lun": "0", "sku": "StandardSSD_LRS"},
-                {"name": "Data", "diskSizeGB": "60", "lun": "1", "sku": "StandardSSD_LRS"},
-                {"name": "Data1", "diskSizeGB": "60", "lun": "2", "sku": "Standard_LRS"},
-                {"name": "Root_System", "diskSizeGB": "10", "lun": "3", "sku": "Standard_LRS"},
-                {"name": "TempDB", "diskSizeGB": "40", "lun": "4", "sku": "Standard_LRS"},
-                {"name": "Backups", "diskSizeGB": "100", "lun": "5", "sku": "Standard_LRS"}
+                {"name": "dataDisk1", "diskSizeGB": "32", "lun": "0", "sku": "Premium_LRS"},
+                {"name": "dataDisk2", "diskSizeGB": "64", "lun": "1", "sku": "StandardSSD_LRS"},
+                {"name": "dataDisk3", "diskSizeGB": "128", "lun": "2", "sku": "Standard_LRS"},
+                {"name": "dataDisk4", "diskSizeGB": "256", "lun": "3", "sku": "Standard_LRS"}
             ]
         }
     }

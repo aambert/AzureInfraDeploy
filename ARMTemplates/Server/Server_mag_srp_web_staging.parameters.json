@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "localAdminUsername": {
-            "value": "oboadmin"
+            "value": "ladmin"
         },
         "localAdminPassword": {
             "reference": {
@@ -14,10 +14,13 @@
             }
         },
         "vmName": {
-            "value": "OBOSrv"
+            "value": "SRPWebSrv"
         },
         "vmSize": {
-            "value": "Standard_F2s"
+            "value": "Standard_B2ms"
+        },
+        "availabilitySetName": {
+            "value": "SRPWebAvSet"
         },
         "virtualNetworkRG": {
             "value": "RooRG"
@@ -48,10 +51,8 @@
         },
         "dataDiskList": {
             "value": [
-                {"name": "dataDisk1", "diskSizeGB": "32", "lun": "0", "sku": "Premium_LRS"},
-                {"name": "dataDisk2", "diskSizeGB": "64", "lun": "1", "sku": "StandardSSD_LRS"},
-                {"name": "dataDisk3", "diskSizeGB": "128", "lun": "2", "sku": "Standard_LRS"},
-                {"name": "dataDisk4", "diskSizeGB": "256", "lun": "3", "sku": "Standard_LRS"}
+                {"name": "dataDisk1", "diskSizeGB": "40", "lun": "0", "sku": "Standard_LRS"},
+                {"name": "dataDisk2", "diskSizeGB": "50", "lun": "1", "sku": "Standard_LRS"}
             ]
         }
     }

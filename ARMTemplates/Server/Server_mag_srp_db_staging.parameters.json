@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "localAdminUsername": {
-            "value": "oboadmin"
+            "value": "ladmin"
         },
         "localAdminPassword": {
             "reference": {
@@ -14,10 +14,13 @@
             }
         },
         "vmName": {
-            "value": "MRDWebSrv"
+            "value": "SRPDBSrv"
         },
         "vmSize": {
-            "value": "Standard_B2ms"
+            "value": "Standard_B4ms"
+        },
+        "availabilitySetName": {
+            "value": "SRPDbAvSet"
         },
         "virtualNetworkRG": {
             "value": "RooRG"
@@ -48,8 +51,12 @@
         },
         "dataDiskList": {
             "value": [
-                {"name": "Binaries", "diskSizeGB": "40", "lun": "0", "sku": "Standard_LRS"},
-                {"name": "Data", "diskSizeGB": "50", "lun": "1", "sku": "Standard_LRS"}
+                {"name": "Log", "diskSizeGB": "40", "lun": "0", "sku": "StandardSSD_LRS"},
+                {"name": "Data", "diskSizeGB": "60", "lun": "1", "sku": "StandardSSD_LRS"},
+                {"name": "Data1", "diskSizeGB": "60", "lun": "2", "sku": "Standard_LRS"},
+                {"name": "Root_System", "diskSizeGB": "10", "lun": "3", "sku": "Standard_LRS"},
+                {"name": "TempDB", "diskSizeGB": "40", "lun": "4", "sku": "Standard_LRS"},
+                {"name": "Backups", "diskSizeGB": "100", "lun": "5", "sku": "Standard_LRS"}
             ]
         }
     }
