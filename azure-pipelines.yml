@@ -1,6 +1,6 @@
 
 trigger:
-- master
+- none
 
 variables:
   deployMode: 'Incremental'
@@ -146,24 +146,6 @@ stages:
         csmParamFile: 'Server_mag_srp_web_staging.parameters.json'
         deploymentName: 'SRVWebServerDeploy'
 
-    - template: PipelineTemplates/deploy-ArmTemplate.yml
-      parameters:
-        servicePrin: $(servicePrin)
-        deployRg: $(deployRg)
-        location: $(location)
-        csmFile: 'DomainJoin.json'
-        csmParamFile: 'DomainJoin.srpDb.parameters.json'
-        deploymentName: 'DBDomainJoin'
-
-    - template: PipelineTemplates/deploy-ArmTemplate.yml
-      parameters:
-        servicePrin: $(servicePrin)
-        deployRg: $(deployRg)
-        location: $(location)
-        csmFile: 'DomainJoin.json'
-        csmParamFile: 'DomainJoin.srpWeb.parameters.json'
-        deploymentName: 'WebDomainJoin'
-
     - template: PipelineTemplates/deploy-dsc.yml
       parameters:
         servicePrin: $(servicePrin)
@@ -185,6 +167,24 @@ stages:
         archSaRg: $(archSaRg)
         container: $(archContainer)
         configName: 'FormatDrives'
+
+    - template: PipelineTemplates/deploy-ArmTemplate.yml
+      parameters:
+        servicePrin: $(servicePrin)
+        deployRg: $(deployRg)
+        location: $(location)
+        csmFile: 'DomainJoin.json'
+        csmParamFile: 'DomainJoin.srpDb.parameters.json'
+        deploymentName: 'DBDomainJoin'
+
+    - template: PipelineTemplates/deploy-ArmTemplate.yml
+      parameters:
+        servicePrin: $(servicePrin)
+        deployRg: $(deployRg)
+        location: $(location)
+        csmFile: 'DomainJoin.json'
+        csmParamFile: 'DomainJoin.srpWeb.parameters.json'
+        deploymentName: 'WebDomainJoin'
 
     - task: AzurePowerShell@4
       displayName: 'DSC - Install SQL'
