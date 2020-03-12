@@ -2,14 +2,14 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "domainAdminUsername": {
+    "domainJoinUsername": {
       "type": "string",
       "metadata": {
         "description": "The name of the Administrator of the new VM."
       },
       "defaultValue": ""
     },
-    "domainAdminPassword": {
+    "domainJoinPassword": {
       "type": "securestring",
       "metadata": {
         "description": "The password for the Administrator account of the new VM and Domain"
@@ -57,12 +57,12 @@
         "settings": {
           "Name": "[parameters('domainName')]",
           "OUPath": "[parameters('ouPath')]",
-          "User": "[concat(parameters('domainName'), '\\', parameters('domainAdminUsername'))]",
+          "User": "[concat(parameters('domainName'), '\\', parameters('domainJoinUsername'))]",
           "Restart": "true",
           "Options": "[parameters('domainJoinOptions')]"
         },
         "protectedSettings": {
-          "Password": "[parameters('domainAdminPassword')]"
+          "Password": "[parameters('domainJoinPassword')]"
         }
       }
     }
