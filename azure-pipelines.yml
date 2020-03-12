@@ -64,7 +64,7 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: ArmTemplates'
       inputs:
-        pathtoPublish: $(System.DefaultWorkingDirectory)/Templates/Server
+        pathtoPublish: $(System.DefaultWorkingDirectory)/ARMTemplates/Server
         artifactName: 'ArmTemplates'
 
     - task: PublishBuildArtifacts@1
