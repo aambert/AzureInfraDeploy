@@ -17,8 +17,8 @@
 #       Test-AzResourceGroupDeployment `
 #       -ResourceGroupName ${{ parameters.deployRg }} `
 #       -Mode 'Incremental' `
-#       -TemplateParameterFile $(System.DefaultWorkingDirectory)\Templates\Server\${{ parameters.templateParamFile }} `
-#       -TemplateFile $(System.DefaultWorkingDirectory)\Templates\Server\${{ parameters.templateFile }} `
+#       -TemplateParameterFile $(System.DefaultWorkingDirectory)\ARMTemplates\Server\${{ parameters.templateParamFile }} `
+#       -TemplateFile $(System.DefaultWorkingDirectory)\ARMTemplates\Server\${{ parameters.templateFile }} `
 #       -ErrorAction Stop
 
 parameters:
@@ -38,6 +38,6 @@ steps:
     resourceGroupName: ${{ parameters.deployRg }}
     location: ${{ parameters.location }}
     templateLocation: 'Linked artifact'
-    csmFile: $(Build.SourcesDirectory)/Templates/Server/${{ parameters.csmFile }}
-    csmParametersFile: $(Build.SourcesDirectory)/Templates/Server/${{ parameters.csmParamFile }}
+    csmFile: $(Build.SourcesDirectory)/ARMTemplates/Server/${{ parameters.csmFile }}
+    csmParametersFile: $(Build.SourcesDirectory)/ARMTemplates/Server/${{ parameters.csmParamFile }}
     deploymentMode: 'Validation'
